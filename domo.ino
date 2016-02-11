@@ -29,11 +29,14 @@ int main() {
       case 0: // no change
         break;
       case 1: // short press
-        leds.setWhite(false);
-        if (leds.getValue()) {
-          leds.setValue(0x00);
+        if (leds.isWhite()) {
+          leds.setWhite(false);
         } else {
-          leds.setValue(0xff);
+          if (leds.getValue()) {
+            leds.setValue(0x00);
+          } else {
+            leds.setValue(0xff);
+          }
         }
         break;
       case 2: // long press

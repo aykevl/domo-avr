@@ -19,6 +19,7 @@ public:
   inline uint32_t getRawColor();
   inline void setRawColor(uint32_t);
   inline bool hueIsTime();
+  inline bool isWhite();
   inline void setWhite(bool);
   inline void setLedsRGB(uint8_t red, uint8_t green, uint8_t blue);
 private:

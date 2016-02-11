@@ -73,6 +73,10 @@ bool Leds::hueIsTime() {
   return color.hueIsTime();
 }
 
+bool Leds::isWhite() {
+  return color.isWhite();
+}
+
 void Leds::setWhite(bool white) {
   if (color.isWhite() != white) {
     // Toggle white state

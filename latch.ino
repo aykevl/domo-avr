@@ -15,9 +15,12 @@ void Latch::loop() {
 //  2: long press
 uint8_t Latch::read() {
   uint8_t currentState = button.read();
-  if (previousState == currentState) {
-    return 0;
+  uint8_t ret = 0;
+  if (currentState == 2) {
+    ret = 2;
+  } else if (previousState == 1 && currentState == 0) {
+    ret = 1;
   }
   previousState = currentState;
-  return currentState;
+  return ret;
 }
