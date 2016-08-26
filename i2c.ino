@@ -227,7 +227,7 @@ void I2C::loop() {
     return;
   }
 
-  if (command && millis() >= lastMillis + I2C_TIMEOUT) {
+  if (command && millis() - lastMillis >= I2C_TIMEOUT) {
     // timeout reached before getting full command, reset
     command = 0;
     while (TinyWireS.available()) {

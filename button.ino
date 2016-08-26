@@ -30,7 +30,7 @@ void Button::loop() {
       if (!nowPressed) {
         // bounce detected
         state = RELEASED;
-      } else if (millis() >= time+BOUNCE_TIMEOUT) {
+      } else if (millis() - time >= BOUNCE_TIMEOUT) {
         state = PRESSED;
         time = millis();
       }
@@ -39,7 +39,7 @@ void Button::loop() {
       if (!nowPressed) {
         state = PRESSED_BOUNCE;
         time = millis();
-      } else if (millis() >= time+LONGPRESS_TIMEOUT) {
+      } else if (millis() - time >= LONGPRESS_TIMEOUT) {
         state = LONGPRESSED;
       }
       break;
@@ -48,7 +48,7 @@ void Button::loop() {
         // bounce detected
         state = PRESSED;
         time = millis();
-      } else if (millis() >= time+BOUNCE_TIMEOUT) {
+      } else if (millis() - time >= BOUNCE_TIMEOUT) {
         state = RELEASED;
       }
       break;
@@ -61,7 +61,7 @@ void Button::loop() {
     case LONGPRESSED_BOUNCE:
       if (nowPressed) {
         state = LONGPRESSED;
-      } else if (millis() >= time+BOUNCE_TIMEOUT) {
+      } else if (millis() - time >= BOUNCE_TIMEOUT) {
         state = RELEASED;
       }
       break;
