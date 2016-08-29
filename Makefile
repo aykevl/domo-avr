@@ -1,5 +1,5 @@
 
-options = --board attiny:avr:attiny:cpu=attiny84,clock=internal1
+options = --board breadboard:avr:atmega328bb --useprogrammer
 
 all: verify
 
@@ -8,7 +8,7 @@ install: upload
 build: verify
 
 upload:
-	arduino $(options) --upload .
+	arduino --upload $(options) .
 
 verify:
-	arduino $(options) --verify .
+	arduino --verify $(options) .

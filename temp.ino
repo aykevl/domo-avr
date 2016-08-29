@@ -2,7 +2,7 @@
 
 const float celsiusToKelvin = 273.15;
 
-const uint8_t tempPin = 1;
+const uint8_t tempPin = A3;
 
 const float seriesResistor = 4790; // Ohm, as measured
 // Spec: http://floris.cc/shop/en/general-components/1309-thermistor-ntc-47kohm.html

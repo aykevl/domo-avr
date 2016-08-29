@@ -19,7 +19,7 @@ int main() {
   Latch latch(2);
 
   for (;;) {
-    i2c.loop();
+    tempLoop();
     leds.loop();
     ledknob.loop();
     latch.loop();
