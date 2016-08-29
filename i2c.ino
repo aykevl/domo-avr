@@ -47,15 +47,15 @@ const uint8_t I2C_COMMAND_TEST       = 0x20; // response: 0xabcd or 0x1234abcd
 I2C::I2C(uint8_t address) {
   tempSetup();
   Wire.begin(address);
-  Wire.onReceive(onReceive);
-  Wire.onRequest(onRequest);
+  Wire.onReceive(I2C_onReceive);
+  Wire.onRequest(I2C_onRequest);
 }
 
-void onReceive(int count) {
-  // Do nothing (it interrupts onRequest)
+void I2C_onReceive(int count) {
+  // Do nothing (it disturbs onRequest)
 }
 
-void onRequest() {
+void I2C_onRequest() {
   if (Wire.available() < 1) {
     return;
   }
