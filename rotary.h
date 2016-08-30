@@ -2,11 +2,20 @@
 #ifndef ROTARY_H
 #define ROTARY_H
 
-// Hard-coded here as it is highly hardware dependent.
+#if defined(__AVR_ATmega328P__)
+const uint8_t ROTARY_PIN_A = 0;
+const uint8_t ROTARY_PIN_B = 1;
+// This reads bits 0bBA000000 from the register.
+#define ROTARY_PIN_BITS (PIND & 0b00000011)
+
+#elif defined(__AVR_ATtiny84__)
 const uint8_t ROTARY_PIN_A = 9;
 const uint8_t ROTARY_PIN_B = 10;
-// This reads the bits (B000000AB) from the register.
-#define ROTARY_PIN_BITS (PINB & 0b11);
+// This reads bits 0b000000AB from the register.
+#define ROTARY_PIN_BITS (PINB & 0b00000011)
+
+#endif
+
 
 class Rotary {
 public:
