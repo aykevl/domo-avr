@@ -19,6 +19,11 @@ void LedKnob::loop() {
   int8_t rotaryValue = rotary.read();
   if (!rotaryValue) return;
 
+  if (state == LEDKNOB_HUE || state == LEDKNOB_VALUE) {
+    // Make direction of change more natural for humans.
+    rotaryValue = -rotaryValue;
+  }
+
   if (state == LEDKNOB_HUE) {
     leds.incHue(rotaryValue);
   } else if (state == LEDKNOB_TIME) {
