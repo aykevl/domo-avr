@@ -14,7 +14,7 @@ const uint8_t LEDKNOB_STATES     = 5; // amount of states
 
 class LedKnob {
 public:
-  LedKnob(uint8_t, uint8_t);
+  LedKnob(uint8_t, uint8_t, uint8_t);
   void loop();
 private:
   Rotary rotary;

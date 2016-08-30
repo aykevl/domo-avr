@@ -13,7 +13,7 @@ Leds leds = Leds(COLOR_MODE_HSV | COLOR_FLAG_HUETIME,
 int main() {
   init();
   Slave slave;
-  LedKnob ledknob(3, 0);
+  LedKnob ledknob(3, 7, 8);
   Latch latch(2);
 
   for (;;) {

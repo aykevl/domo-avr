@@ -1,38 +1,40 @@
 
 #include "loop.h"
 
-Loop::Loop() {
-  // dummy
-}
-
-Loop::Loop(uint8_t pin, uint8_t len) {
-  this->pin = pin;
+void Loop::setup(uint8_t pinClock, uint8_t pinReset, uint8_t len) {
+  this->pinClock = pinClock;
+  this->pinReset = pinReset;
   this->len = len;
-  pinMode(pin, OUTPUT);
-  digitalWrite(pin, LOW);
+
+  pinMode(pinClock, OUTPUT);
+  pinMode(pinReset, OUTPUT);
+
+  digitalWrite(pinClock, LOW);
+
+  // Reset the device on startup
+  digitalWrite(pinReset, HIGH);
+  digitalWrite(pinReset, LOW);
 }
 
 void Loop::increment() {
+  // Increase counter.
   this->pos++;
   if (this->pos >= this->len) {
+    // wrap around
     this->pos = 0;
   }
+
+  // Generate a single clock pulse.
+  digitalWrite(pinClock, HIGH);
+  digitalWrite(pinClock, LOW);
+
   if (this->pos == 0) {
-    // Disable power, resetting the 4066 IC.
-    digitalWrite(pin, LOW);
-  } else if (this->pos == 1) {
-    digitalWrite(pin, HIGH);
-  } else {
-    // The 4066 IC responds really fast (or digitalWrite is just slow).
-    digitalWrite(pin, LOW);
-    digitalWrite(pin, HIGH);
+    // Reset the LEDs to the first (all off).
+    digitalWrite(pinReset, HIGH);
+    digitalWrite(pinReset, LOW);
   }
 }
 
 uint8_t Loop::getPosition() {
   return pos;
-}
-
-uint8_t Loop::getLength() {
-  return len;
 }

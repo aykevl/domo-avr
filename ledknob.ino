@@ -1,8 +1,8 @@
 #include "ledknob.h"
 
-LedKnob::LedKnob(uint8_t buttonPin, uint8_t ledLoopPin) {
+LedKnob::LedKnob(uint8_t buttonPin, uint8_t ledLoopClockPin, uint8_t ledLoopResetPin) {
   choose = Choose(buttonPin, LEDKNOB_STATES);
-  ledLoop = Loop(ledLoopPin, LEDKNOB_STATES);
+  ledLoop.setup(ledLoopClockPin, ledLoopResetPin, LEDKNOB_STATES);
 }
 
 void LedKnob::loop() {
