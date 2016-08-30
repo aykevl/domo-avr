@@ -3,18 +3,16 @@
 #include "ledknob.h"
 #include "latch.h"
 #include "leds.h"
-#include "i2c.h"
+#include "slave.h"
 
 Leds leds = Leds(COLOR_MODE_HSV | COLOR_FLAG_HUETIME,
                  0x48,  // hue/time (0x48 = 128 = ~32s)
                  0xff,  // saturation
                  0xff); // value
 
-const uint8_t I2C_ADDRESS = 0x3d;
-
 int main() {
   init();
-  I2C i2c(I2C_ADDRESS);
+  Slave slave;
   LedKnob ledknob(3, 0);
   Latch latch(2);
 
@@ -23,6 +21,7 @@ int main() {
     leds.loop();
     ledknob.loop();
     latch.loop();
+    slave.loop();
 
     // Button press handler
     switch (latch.read()) {

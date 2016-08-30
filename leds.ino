@@ -2,7 +2,7 @@
 #include "leds.h"
 
 // PWM pins (red, green, blue)
-const uint8_t LED_PINS[3] = {9, 10, 11};
+const uint8_t LED_PINS[3] = {5, 6, 9};
 
 
 Leds::Leds(uint8_t mode, uint8_t hue, uint8_t saturation, uint8_t value) {
